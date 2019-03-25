@@ -18,6 +18,9 @@
 </head>
 <body>
 <h1 style="text-align: center;">欢迎来到第一个增删改查项目</h1>
-<p>点击<a href="/customer/list">这里</a>进入列表页</p>
+<p>点击<a href="${pageContext.request.contextPath}/customer/list">这里</a>进入列表页</p>
+<p>点击<a href="${pageContext.request.contextPath}/test/hello">这里</a>访问REST测试</p>
+<p>点击<a href="${pageContext.request.contextPath}/api/customers">这里</a>客户列表</p>
+<p>点击<a href="${pageContext.request.contextPath}/api/customer/1">这里</a>单个客户</p>
 </body>
 </html>

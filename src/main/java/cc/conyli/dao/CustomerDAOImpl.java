@@ -26,7 +26,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         //获取Customers查询结果
         Session session = sessionFactory.getCurrentSession();
         //用原始的方法查询
-        return session.createQuery("From Customer customer ORDER BY customer.lastName", Customer.class).getResultList();
+        return session.createQuery("From Customer customer ORDER BY customer.id", Customer.class).getResultList();
     }
 
     @Override
