@@ -1,5 +1,6 @@
 package cc.conyli.entity;
 
+
 import javax.persistence.*;
 
 @Entity

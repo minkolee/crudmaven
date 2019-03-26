@@ -27,7 +27,7 @@ public class CustomerRestController {
         return customerService.getCustomers();
     }
 
-    @GetMapping("/customer/{customerId}")
+    @GetMapping("/customers/{customerId}")
     public Customer getCustomer(@PathVariable int customerId) {
         Customer customer = customerService.getCustomer(customerId);
         if (customer == null) {
@@ -35,6 +35,42 @@ public class CustomerRestController {
         }
         return customer;
     }
+
+    @PostMapping("/customers")
+    public Customer addCustomer(@RequestBody Customer customer) {
+
+        customer.setId(0);
+
+        customerService.saveCustomer(customer);
+
+        return customer;
+    }
+
+    @PutMapping("/customers")
+    public Customer updateCustomer(@RequestBody Customer customer) {
+        Customer customerOld = customerService.getCustomer(customer.getId());
+        if (customerOld == null) {
+            throw new CustomerNotfoundError("Customer with id " + customer.getId() + " NOT FOUND!");
+        }
+        customerService.saveCustomer(customer);
+        System.out.println(customer);
+        System.out.println(customerOld);
+        return customer;
+    }
+
+    @DeleteMapping("/customers/{customerId}")
+    public Customer deleteCustomer(@RequestBody Customer customer) {
+        Customer oldCustomer = customerService.getCustomer(customer.getId());
+        if (oldCustomer == null) {
+            throw new CustomerNotfoundError("Customer with id " + customer.getId() + " NOT FOUND!");
+        }
+        customerService.deleteCustomer(customer.getId());
+        return oldCustomer;
+    }
+
+
+
+
 
     @ExceptionHandler
     public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotfoundError customerNotfoundError) {
