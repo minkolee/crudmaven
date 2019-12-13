@@ -3,12 +3,13 @@ package cc.conyli.service;
 import cc.conyli.dao.CustomerDAO;
 import cc.conyli.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "users")
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDAO customerDAO;
@@ -20,20 +21,21 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    @Cacheable(cacheNames = "users")
+    @Cacheable(key = "'list'")
     public List<Customer> getCustomers() {
         return customerDAO.getCustomers();
     }
 
     @Override
     @Transactional
-    public void saveCustomer(Customer customer) {
-        customerDAO.saveCustomer(customer);
+    @Caching(put = @CachePut(key = "#customer.id"), evict = @CacheEvict(key = "'list'"))
+    public Customer saveCustomer(Customer customer) {
+        return customerDAO.saveCustomer(customer);
     }
 
     @Override
     @Transactional
-    @Cacheable(cacheNames = "users")
+    @Cacheable
     public Customer getCustomer(int customerId) {
         return customerDAO.getCustomer(customerId);
     }
