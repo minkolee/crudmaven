@@ -21,14 +21,8 @@
     <context:component-scan base-package="cc.conyli"/>
 
     <cache:annotation-driven/>
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <set>
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="default"/>
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="users"/>
-            </set>
-        </property>
-    </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" />
 
 
 
@@ -92,6 +86,23 @@
     <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 
     <aop:aspectj-autoproxy />
+
+<!--    不成功的尝试AOP配置缓存-->
+<!--    <bean id="customerService" class="cc.conyli.service.CustomerServiceImpl"/>-->
+
+<!--    <cache:advice id="cacheAdvice" cache-manager="cacheManager">-->
+<!--        <cache:caching cache="users">-->
+<!--            <cache:cacheable method="getCustomers" key="123"/>-->
+<!--            <cache:cache-evict method="saveCustomer" key="123"/>-->
+<!--            <cache:cache-put method="saveCustomer" key="'#customer.id'"/>-->
+<!--            <cache:cacheable method="getCustomer" key="'#root.args[0]'"/>-->
+<!--        </cache:caching>-->
+
+<!--    </cache:advice>-->
+<!--    <aop:config>-->
+<!--        <aop:advisor advice-ref="cacheAdvice" pointcut="execution(* cc.conyli.service.CustomerServiceImpl.*(..))" />-->
+<!--    </aop:config>-->
+
 
 </beans>
 

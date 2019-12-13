@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@CacheConfig(cacheNames = "users")
+@CacheConfig(cacheNames = "ehentai")
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDAO customerDAO;
