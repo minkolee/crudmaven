@@ -3,6 +3,7 @@ package cc.conyli.service;
 import cc.conyli.dao.CustomerDAO;
 import cc.conyli.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -19,6 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
+    @Cacheable(cacheNames = "users")
     public List<Customer> getCustomers() {
         return customerDAO.getCustomers();
     }
@@ -31,6 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
+    @Cacheable(cacheNames = "users")
     public Customer getCustomer(int customerId) {
         return customerDAO.getCustomer(customerId);
     }

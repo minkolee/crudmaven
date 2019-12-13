@@ -4,7 +4,9 @@ import cc.conyli.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public List<Customer> getCustomers() {
-
+        System.out.println("从数据库中查找多个");
         //获取Customers查询结果
         Session session = sessionFactory.getCurrentSession();
         //用原始的方法查询
@@ -37,6 +39,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer getCustomer(int customerId) {
+        System.out.println("从数据库中查找单个");
         Session session = sessionFactory.getCurrentSession();
         return session.get(Customer.class, customerId);
     }
@@ -46,5 +49,13 @@ public class CustomerDAOImpl implements CustomerDAO {
         Session session = sessionFactory.getCurrentSession();
         Customer customer = session.get(Customer.class, customerId);
         session.delete(customer);
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }

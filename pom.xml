@@ -16,7 +16,7 @@
         <springframework.version>5.1.5.RELEASE</springframework.version>
         <hibernate.version>5.4.1.Final</hibernate.version>
         <mysql.connector.version>5.1.47</mysql.connector.version>
-        <c3po.version>0.9.5.3</c3po.version>
+        <c3po.version>[0.9.5.4,)</c3po.version>
 
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
+            <version>[2.9.10.1,)</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
@@ -120,6 +120,10 @@
             <version>2.3.1</version>
         </dependency>
 
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+    </dependency>
 
 
     </dependencies>
