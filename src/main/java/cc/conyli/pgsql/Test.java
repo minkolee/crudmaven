@@ -20,11 +20,17 @@ public class Test {
 
         System.out.println(conn);
 
-        String sql = "SELECT * FROM test.department";
+        //AS 查询同一张表与自身的查询
+        String sql = "SELECT T1.name, T1.salary, T1.dept_name\n" +
+                "FROM test.instructor as T1,\n" +
+                "     test.instructor as T2\n" +
+                "WHERE T1.salary > T2.salary and T2.dept_name='Biology' and T1.dept_name<>'Physics' and T1.dept_name<>'Biology';";
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
-            System.out.println(resultSet.getString(1));
+            System.out.print(resultSet.getString(1)+"\t");
+            System.out.print(resultSet.getString(2)+"\t");
+            System.out.print(resultSet.getString(3)+"\n");
         }
     }
 }
