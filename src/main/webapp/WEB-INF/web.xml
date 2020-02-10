@@ -14,7 +14,10 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -23,7 +26,12 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>WEB-INF/spring-mvc-crm.xml</param-value>
         </init-param>
-        
+
+        <init-param>
+            <param-name>publishEvents</param-name>
+            <param-value>false</param-value>
+        </init-param>
+
         <load-on-startup>1</load-on-startup>
     </servlet>
     

@@ -68,10 +68,6 @@ public class CustomerRestController {
         return oldCustomer;
     }
 
-
-
-
-
     @ExceptionHandler
     public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotfoundError customerNotfoundError) {
         CustomerErrorResponse customerErrorResponse = new CustomerErrorResponse();

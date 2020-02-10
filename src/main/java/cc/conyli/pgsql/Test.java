@@ -17,7 +17,6 @@ public class Test {
 
         String url = "jdbc:postgresql://106.54.215.164/mydb?user=minkolee&password=fflym0709&currentSchema=test";
         Connection conn = DriverManager.getConnection(url);
-
         System.out.println(conn);
 
         //AS 查询同一张表与自身的查询
