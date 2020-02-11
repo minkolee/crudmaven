@@ -11,6 +11,7 @@
 
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Add Customer</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/add-customer-style.css">
 </head>

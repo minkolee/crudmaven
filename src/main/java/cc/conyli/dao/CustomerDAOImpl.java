@@ -39,14 +39,14 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Customer getCustomer(int customerId) {
+    public Customer getCustomer(long customerId) {
         System.out.println("从数据库中查找单个");
         Session session = sessionFactory.getCurrentSession();
         return session.get(Customer.class, customerId);
     }
 
     @Override
-    public void deleteCustomer(int customerId) {
+    public void deleteCustomer(long customerId) {
         Session session = sessionFactory.getCurrentSession();
         Customer customer = session.get(Customer.class, customerId);
         session.delete(customer);

@@ -30,10 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // secures all REST endpoints under "/api/customers"
         http.authorizeRequests()
                 .antMatchers("/api/customers/**").authenticated()
+                .antMatchers("/user").permitAll()
                 .and()
                 .httpBasic()
                 .and()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
     }
 }

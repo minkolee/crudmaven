@@ -36,13 +36,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     @Cacheable
-    public Customer getCustomer(int customerId) {
+    public Customer getCustomer(long customerId) {
         return customerDAO.getCustomer(customerId);
     }
 
     @Override
     @Transactional
-    public void deleteCustomer(int customerId) {
+    @Caching(evict = @CacheEvict(key = "'list'"))
+    public void deleteCustomer(long customerId) {
         customerDAO.deleteCustomer(customerId);
     }
 }
